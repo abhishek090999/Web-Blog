@@ -1,0 +1,42 @@
+{% extends 'base_layout.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-9" style="border-right:1px solid black;">
+            <h1>Log in</h1>
+            <form class="site-form" action="{% url 'accounts:login' %}" method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                {% if request.GET.next %}
+                    <input type="hidden" name="next" value="{{ request.GET.next }}" />
+                {% endif %}
+                <div class="d-flex justify-content-center"><button type="submit" class="btn btn-success">Login</button></div>
+            </form>
+            <a href="{% url 'password_reset' %}">Forgot Password?</a>
+            <p>Not got an account? <a href="{% url 'accounts:signup' %}">Sign Up</a></p>
+            <hr>
+            <div class="d-flex justify-content-center"><p>----OR----</p></div>
+            <div class="d-flex justify-content-center" style="margin-bottom: 50px;">
+              <div class="btn-group">
+                <a class='btn btn-danger disabled'><i class="fa fa-google-plus" style="width:16px; height:20px"></i></a>
+                <a class='btn btn-danger' href="{% url 'social:begin' 'google-oauth2' %}" style="width:12em;"> Sign in with Google</a>
+              </div>
+            </div>
+
+        </div>
+        
+        <div class="col-3">
+          <div class="d-flex flex-column">
+            
+            <p class="font-italic font-weight-bold">Follow me on social media:</p>
+            <div class="d-flex justify-content-around">
+              <a href="https://www.facebook.com/shishir.mishra.39395" ><i class="fa fa-facebook-square fa-2x" aria-hidden="true" style="color:blue;"></i></a>
+              <a href="https://www.instagram.com/mishrashishir3/" ><i style="font-size:30px; margin-right: 20px; color:red;" class="fa">&#xf16d;</i></a>
+            </div>
+          </div>          
+        </div>  
+    </div>
+</div>
+
+{% endblock %}

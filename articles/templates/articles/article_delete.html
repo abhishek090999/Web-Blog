@@ -1,0 +1,35 @@
+{% extends 'base_layout.html' %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-9" style="border-right:1px solid black;">	
+			<form method="POST">
+				{% csrf_token%}
+				<h2>Are you sure you want to delete "{{article.title}}"? </h2>			
+				<div class="d-flex justify-content-center" style="margin-top: 20px;"><button type="submit" class="btn btn-danger">Confirm</button></div>
+			</form>	
+		</div>
+		<div class="col-3">
+          
+            
+
+              <p class="font-italic font-weight-bold">Categories:</p>
+                <ul class="list-group list-group-flush" style="margin-bottom: 20px;">
+                  {% for item in categories %}              
+                    <a href="{% url 'articles:category' item.id %}" class="text-decoration-none">
+                  <li class="list-group-item">{{item}}</li></a>
+                  {% endfor %}
+                  
+                </ul>
+            <p class="font-italic font-weight-bold">Follow me on social media:</p>
+            <div class="d-flex justify-content-around">
+              <a href="https://www.facebook.com/shishir.mishra.39395" ><i class="fa fa-facebook-square fa-2x" aria-hidden="true" style="color:blue;"></i></a>
+              <a href="https://www.instagram.com/mishrashishir3/" ><i style="font-size:30px; margin-right: 20px; color:red;" class="fa">&#xf16d;</i></a>
+            </div>
+          </div>          
+           
+	</div>
+</div>
+{% endblock %}
